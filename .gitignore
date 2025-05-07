@@ -1,0 +1,16 @@
+# 忽略特定目录
+node_modules/
+build/
+dist/
+.DS_Store
+
+# 忽略特定文件
+.env
+*.log
+
+# 忽略特定扩展名
+*.tmp
+*.swp
+
+# 忽略目录但不忽略子目录中的特定文件
+!build/important-file.txt
