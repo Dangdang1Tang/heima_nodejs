@@ -5,6 +5,8 @@ dist/
 .DS_Store
 
 # 忽略特定文件
+package.json
+package-lock.json
 .env
 *.log
 

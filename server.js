@@ -19,8 +19,27 @@ server.on('error', (err) => {
 
 // 使用express来搭建服务
 const express = require('express')
+const logger = require('./logger/logger');
 
 const app = express()
+
+// 示例路由
+app.get('/', (req, res) => {
+  logger.info('Homepage visited');
+  res.send('Hello World!');
+});
+
+app.get('/error', (req, res) => {
+  logger.error('This is an error!');
+  res.status(500).send('Internal Server Error');
+});
+
+app.post('/warning', (req, res) => {
+  logger.warning('This is a warning!');
+  res.send('Check the logs!');
+});
+
+
 app.get('/', function(req, res) {
   res.send('hello express')
 })
@@ -129,12 +148,12 @@ function middleware(req, res, next) {
 
 app.use(middleware) // 注册全局中间件
 
-function logger(req, res, next) {
-    const time = new Date()
-    console.log(`[${time.toLocaleString()}] ${req.method} ${req.url}`);
-    next();
-  }  
-app.use(logger)
+// function logger(req, res, next) {
+//     const time = new Date()
+//     console.log(`[${time.toLocaleString()}] ${req.method} ${req.url}`);
+//     next();
+//   }  
+// app.use(logger)
 
 app.get('/local', function(req, res, next) 
     {
